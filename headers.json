@@ -1,0 +1,33 @@
+{
+"headers": [
+
+            {
+              "name": "upgrade-insecure-requests",
+              "value": "1"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"
+            },
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+            },
+            {
+              "name": "referer",
+              "value": "https://twitter.com/"
+            },
+            {
+              "name": "accept-encoding",
+              "value": "gzip, deflate, br"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9"
+            },
+            {
+              "name": "cookie",
+              "value": "personalization_id=\"v1_Ju5i2+jYZnyGGG3bAdfuLA==\"; tfw_exp=0; guest_id=v1%3A152766888473357219; external_referer=padhuUp37zjgzgv1mFWxJzx4vPNPpMnZ52M34anUtp0%3D|0|8e8t2xd8A2w%3D; _ga=GA1.2.366740644.1527668884; gdpr_lo=1; ads_prefs=\"HBERAAA=\"; kdt=rE1fMj2qwebOAQDfZFHWI8i7ziBetMWeXIs1xlu2; remember_checked_on=1; twid=\"u=830741878702215169\"; auth_token=88ded27d25fe836702bb3decaa7e04831f2cf32b; csrf_same_site_set=1; csrf_same_site=1; lang=en-gb; _twitter_sess=BAh7CSIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCMkTtc9jAToHaWQiJTU0%250AYzg4ZDQzNDI0MzhhMTI0ZGRiYjdlODU0ODVhYzliOgxjc3JmX2lkIiU3ZWYz%250AZmZlZDRhMjlhMjYyMWZmYWE5ODIzODVhNWQzNg%253D%253D--9741b7f1f80577e08ddbf496b9d57308333df070; ct0=3c9e0a3fc8a3f013e70488826d5aaf92; _gid=GA1.2.804818150.1528198144; app_shell_visited=1"
+            }
+          ]
+ }

@@ -9,15 +9,15 @@ Created
         it doesnot automate the login process yet
 '''
 
-#import progressbar
+import progressbar
 import time,os
 
 import json,requests
 from bs4 import BeautifulSoup
 
 
-def getInitialPage():
-    url = "https://twitter.com/search?q=modi&src=typd"
+def getInitialPage(topic):
+    url = "https://twitter.com/search?q={0}&src=typd".format(topic)
     with open("headers.json", 'r') as fileContents:
         jsonRaw = json.loads(fileContents.read())
     #Build dict from json
@@ -42,17 +42,59 @@ def readResponseFromTextFile():
         return temp
     return None
 
+def getTweetData(htmlContent):
+    ExtractedData = []
+    
+    soup = BeautifulSoup(htmlContent,"lxml")
+    for i in soup.find_all("div", {"class":"tweet"}):
+        tweetData = {}
 
-#getInitialPage()
-htmlText = readResponseFromTextFile()
-tweets = []
-if htmlText :
-    soup = BeautifulSoup(htmlText)
-    for i in soup.find_all('p', {'class':'TweetTextSize'}):
-        tweets.append(i.text)
+        if i.find('span',{'class':'ProfileTweet-actionCount'}):
+            temp = i.find('span',{'class':'ProfileTweet-actionCount'}).text.encode('utf-8').lstrip().rstrip() #replies
+            tweetData['replies'] = temp[0:temp.index('r')-1] 
+        else:
+            tweetData['replies'] = '0'
+
+        if i.find('span',{'class':'ProfileTweet-action--retweet'}):
+            temp = i.find('span',{'class':'ProfileTweet-action--retweet'}).text.encode('utf-8').lstrip().rstrip() # retweets
+            tweetData['retweets'] = temp[0:temp.index('r')-1] 
+        else:
+            tweetData['retweets'] = '0'
+
+        if i.find('span',{'class':'ProfileTweet-action--favorite'}):
+            temp =  i.find('span',{'class':'ProfileTweet-action--favorite'}).text.encode('utf-8').lstrip().rstrip() #likes
+            tweetData['likes'] = temp[0:temp.index('l')-1] 
+        else:
+            tweetData['likes'] = '0'
+
+        if i.find('span',{'class':'username'}):
+            tweetData['handle'] = i.find('span',{'class':'username'}).text.encode('utf-8').lstrip().rstrip() #twitter Handle
+        else:
+            tweetData['handle'] = 'Unknown'
+        
+        if i.find('p', {'class':'TweetTextSize'}):
+            tweetData['tweet'] = i.find('p', {'class':'TweetTextSize'}).text.encode('utf-8').lstrip().rstrip() # Tweet
+        else:
+            tweetData['tweet'] = ''
+        ExtractedData.append(tweetData)
+    return ExtractedData
+
+def main():
+    getInitialPage("trump")
+    htmlText = readResponseFromTextFile()
+    tweets = []
+    if htmlText :
+        tweets += getTweetData(htmlText)
     
-    
-#for i in progressbar.progressbar(range(100)):
+    print len(tweets)
+    print "\n--------------------------------------------------------------\n"
+    for i in tweets:
+        print i 
+        print ""
+    #for i in progressbar.progressbar(range(100)):
+    #    s=1+1
+
+main()
 
     
 
